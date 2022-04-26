@@ -108,7 +108,6 @@ def calculatePayout(bet, slot1, slot2, slot3):
 
 
 # Main function
-
 try:
     GPIO.output((R1, G1, B1, R2, G2, B2, R3, G3, B3),
                 GPIO.LOW)     # Set LED pins to OFF
@@ -126,7 +125,7 @@ try:
 
         # Condition if coin is inserted
         if input_state == False:
-            print("coin inserted")
+            print("Quarter inserted")
             credits += 25
             lcd.clear()
             lcd.message("Current bet:\n" + str(credits))
@@ -137,10 +136,10 @@ try:
         # Condition if Start button pressed
         if start == False:
             if credits != 0:
+                print("Start button pressed")
                 slotList = rollHandler()
                 credits = calculatePayout(
                     credits, slotList[0], slotList[1], slotList[2])
-                print("button pressed")
                 time.sleep(10)
 
                 lcd.clear()
@@ -166,7 +165,7 @@ try:
                 sys.exit()      # Exit program
 
             if start == False:
-                print("start pressed")
+                print("Start button pressed")
                 time.sleep(1)
                 lcd.clear()
                 lcd.message("Playing again")
